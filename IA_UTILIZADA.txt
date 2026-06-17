@@ -1,0 +1,100 @@
+================================================================
+EVIDENCIA DEL USO DE INTELIGENCIA ARTIFICIAL
+Evaluación Sumativa 2 - Interacción con Documentos HTML usando JavaScript
+Asignatura: Desarrollo Frontend - INACAP
+================================================================
+
+HERRAMIENTA UTILIZADA
+---------------------
+GitHub Copilot (extensión en Visual Studio Code)
+Claude (asistente de IA) como apoyo complementario
+
+
+PROMPT UTILIZADO
+----------------
+Prompt 1 - Estructura inicial del proyecto:
+"Genera la estructura HTML de un sistema de registro de solicitudes
+de soporte técnico para la empresa TeslaSys Chile, con un encabezado
+corporativo, un formulario con los campos nombre, correo electrónico,
+área de trabajo, tipo de solicitud (Hardware/Software/Redes/Seguridad)
+y descripción del problema, además de una tabla para mostrar las
+solicitudes registradas dinámicamente."
+
+Prompt 2 - Mejora visual con CSS:
+"Mejora visualmente este formulario HTML utilizando CSS moderno y
+diseño responsivo, con paleta corporativa azul marino, badges
+diferenciados por color para cada tipo de solicitud y animaciones
+suaves al registrar nuevas filas."
+
+Prompt 3 - Lógica JavaScript:
+"Implementa la lógica en JavaScript para capturar los datos del
+formulario, validar que ningún campo quede vacío y que el correo
+contenga el símbolo @, almacenar cada solicitud como objeto dentro
+de un arreglo usando push(), y renderizar la tabla dinámicamente
+con forEach manipulando el DOM, sin recargar la página."
+
+Prompt 4 - Accesibilidad y buenas prácticas:
+"Agrega atributos ARIA, etiquetas semánticas y mejoras de
+accesibilidad para que el formulario sea utilizable con teclado
+y lectores de pantalla. Incluye también una función para escapar
+HTML y prevenir inyección desde los inputs."
+
+
+RESULTADO APLICADO
+------------------
+1. Diseño visual:
+   - Se incorporó un diseño responsivo de dos columnas (formulario
+     + tabla) que se adapta a móviles transformándose en una sola
+     columna.
+   - Se aplicaron colores corporativos: azul marino para el header,
+     blanco para las tarjetas y badges diferenciados por color para
+     cada tipo de solicitud (Hardware naranja, Software azul, Redes
+     turquesa, Seguridad rojo).
+   - Efecto hover en los botones con elevación sutil mediante
+     transform: translateY().
+
+2. Animaciones y efectos:
+   - Animación de aparición (fade-in + slide) al cargar las tarjetas.
+   - Animación al insertar nuevas filas en la tabla.
+   - Transiciones suaves en los inputs al recibir foco.
+   - Respeto a la preferencia "prefers-reduced-motion" para
+     accesibilidad.
+
+3. Organización del código:
+   - Variables CSS centralizadas para colores, sombras y radios.
+   - JavaScript organizado en funciones con responsabilidades claras:
+     registrarSolicitud(), limpiarFormulario(), renderizarTabla(),
+     eliminarSolicitud(), mostrarMensaje() y funciones auxiliares.
+   - Comentarios en bloque que indican la sección del código.
+
+4. Accesibilidad y responsividad:
+   - Atributos ARIA (role, aria-live, aria-label, aria-labelledby).
+   - Etiquetas <label> asociadas a cada input mediante el atributo for.
+   - Estados de foco visibles con outline.
+   - Función escaparHTML() para prevenir inyección de código desde
+     los datos ingresados por el usuario.
+   - Diseño completamente responsivo desde 320px hasta pantallas
+     grandes mediante media queries (1024px y 640px).
+
+5. Funcionalidad extra sugerida por la IA:
+   - Botón para eliminar solicitudes individuales desde la tabla.
+   - Contador dinámico del total de solicitudes registradas.
+   - Estado vacío visual cuando aún no hay solicitudes.
+   - Marcado visual (borde rojo) de los campos con error.
+   - Auto-ocultado del mensaje de "formulario limpiado".
+
+
+VALIDACIÓN MANUAL DEL CÓDIGO GENERADO
+-------------------------------------
+Cada sugerencia de la IA fue revisada y validada manualmente para
+asegurar que cumpliera con los requerimientos solicitados en la
+pauta de evaluación. Se verificó especialmente:
+- Uso de variables let / const.
+- Uso obligatorio de if / else para validaciones.
+- Uso obligatorio de forEach para recorrer el arreglo.
+- Uso de push() para agregar objetos al arreglo solicitudes.
+- Manipulación del DOM sin recargar la página.
+- Separación correcta entre HTML, CSS y JavaScript en archivos
+  independientes.
+
+================================================================

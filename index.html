@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Sistema de Registro de Solicitudes de Soporte - TeslaSys Chile" />
+    <title>TeslaSys Chile - Sistema de Soporte</title>
+    <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+    <!-- ===================== ENCABEZADO ===================== -->
+    <header class="header" role="banner">
+        <div class="header__container">
+            <div class="header__brand">
+                <svg class="header__logo" viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M12 2L2 7l10 5 10-5-10-5zm0 7.5L4.5 6 12 3 19.5 6 12 9.5zM2 17l10 5 10-5M2 12l10 5 10-5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+                </svg>
+                <span class="header__name">TeslaSys Chile</span>
+            </div>
+
+            <h1 class="header__title">Sistema de Registro de Solicitudes de Soporte</h1>
+
+            <div class="header__badge">
+                <svg viewBox="0 0 24 24" aria-hidden="true" width="18" height="18">
+                    <path d="M3 12a9 9 0 0118 0v5a2 2 0 01-2 2h-2v-7h4M3 12v5a2 2 0 002 2h2v-7H3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <span>Soporte TI</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- ===================== CONTENIDO PRINCIPAL ===================== -->
+    <main class="main" role="main">
+        <div class="layout">
+
+            <!-- ============ FORMULARIO ============ -->
+            <section class="card card--form" aria-labelledby="tituloFormulario">
+                <header class="card__header">
+                    <svg viewBox="0 0 24 24" class="card__icon" aria-hidden="true">
+                        <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6z M14 2v6h6 M9 13h6 M9 17h6 M9 9h2" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <h2 id="tituloFormulario" class="card__title">Nueva Solicitud de Soporte</h2>
+                </header>
+
+                <form id="formularioSolicitud" class="form" novalidate>
+                    <div class="form__group">
+                        <label for="nombre" class="form__label">Nombre del colaborador</label>
+                        <input type="text" id="nombre" class="form__input" placeholder="Ingrese su nombre" autocomplete="name" />
+                    </div>
+
+                    <div class="form__group">
+                        <label for="correo" class="form__label">Correo electrónico</label>
+                        <input type="email" id="correo" class="form__input" placeholder="Ingrese su correo electrónico" autocomplete="email" />
+                    </div>
+
+                    <div class="form__group">
+                        <label for="area" class="form__label">Área de trabajo</label>
+                        <input type="text" id="area" class="form__input" placeholder="Ingrese el área de trabajo" />
+                    </div>
+
+                    <div class="form__group">
+                        <label for="tipo" class="form__label">Tipo de solicitud</label>
+                        <select id="tipo" class="form__input form__select">
+                            <option value="">Seleccione una opción</option>
+                            <option value="Hardware">Hardware</option>
+                            <option value="Software">Software</option>
+                            <option value="Redes">Redes</option>
+                            <option value="Seguridad">Seguridad</option>
+                        </select>
+                    </div>
+
+                    <div class="form__group">
+                        <label for="descripcion" class="form__label">Descripción del problema</label>
+                        <textarea id="descripcion" class="form__input form__textarea" rows="4" placeholder="Describa el problema que presenta..."></textarea>
+                    </div>
+
+                    <div class="form__actions">
+                        <button type="button" id="btnRegistrar" class="btn btn--primary">
+                            <svg viewBox="0 0 24 24" aria-hidden="true" width="16" height="16">
+                                <path d="M19 21H5a2 2 0 01-2-2V5a2 2 0 012-2h11l5 5v11a2 2 0 01-2 2z M17 21v-8H7v8 M7 3v5h8" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            Registrar Solicitud
+                        </button>
+                        <button type="button" id="btnLimpiar" class="btn btn--secondary">
+                            <svg viewBox="0 0 24 24" aria-hidden="true" width="16" height="16">
+                                <path d="M3 12a9 9 0 109-9 M3 4v5h5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            Limpiar Formulario
+                        </button>
+                    </div>
+
+                    <!-- Mensaje dinámico (insertado vía DOM) -->
+                    <div id="mensaje" class="mensaje" role="status" aria-live="polite"></div>
+                </form>
+            </section>
+
+            <!-- ============ TABLA DE SOLICITUDES ============ -->
+            <section class="card card--table" aria-labelledby="tituloTabla">
+                <header class="card__header">
+                    <svg viewBox="0 0 24 24" class="card__icon" aria-hidden="true">
+                        <path d="M3 6h18M3 12h18M3 18h18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                    </svg>
+                    <h2 id="tituloTabla" class="card__title">Solicitudes Registradas</h2>
+                </header>
+
+                <div class="table-wrapper">
+                    <table class="tabla" aria-describedby="totalSolicitudes">
+                        <thead>
+                            <tr>
+                                <th scope="col">N°</th>
+                                <th scope="col">Nombre</th>
+                                <th scope="col">Área</th>
+                                <th scope="col">Tipo de Solicitud</th>
+                                <th scope="col">Descripción</th>
+                                <th scope="col" aria-label="Acciones"></th>
+                            </tr>
+                        </thead>
+                        <tbody id="cuerpoTabla">
+                            <!-- Filas generadas dinámicamente por JS -->
+                        </tbody>
+                    </table>
+
+                    <div id="estadoVacio" class="estado-vacio">
+                        <svg viewBox="0 0 24 24" aria-hidden="true" width="40" height="40">
+                            <path d="M9 12h6m-6 4h4M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6z M14 2v6h6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        <p>Aún no hay solicitudes registradas</p>
+                    </div>
+                </div>
+
+                <footer id="totalSolicitudes" class="tabla__footer">
+                    <svg viewBox="0 0 24 24" aria-hidden="true" width="16" height="16">
+                        <circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="1.8"/>
+                        <path d="M12 16v-4M12 8h.01" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                    </svg>
+                    <span>Total de solicitudes registradas: <strong id="contador">0</strong></span>
+                </footer>
+            </section>
+
+        </div>
+    </main>
+
+    <!-- ===================== FOOTER ===================== -->
+    <footer class="footer" role="contentinfo">
+        <div class="footer__container">
+            <div class="footer__brand">
+                <svg viewBox="0 0 24 24" aria-hidden="true" width="18" height="18">
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+                </svg>
+                <span>TeslaSys Chile · Área de Soporte TI</span>
+            </div>
+            <p class="footer__text">Desarrollado para mejorar la experiencia de nuestros colaboradores</p>
+            <span class="footer__code" aria-hidden="true">&lt;/&gt;</span>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
